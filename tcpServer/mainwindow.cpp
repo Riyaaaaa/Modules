@@ -83,7 +83,6 @@ void MainWindow::inputProblem()
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text))
             return;
 
-        //z
         QTextStream in(&file);
         while (!in.atEnd()) {
             str = in.readLine();

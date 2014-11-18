@@ -11,6 +11,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->sendButton,SIGNAL(clicked()),this,SLOT(sendString()));
     connect(ui->inputButton,SIGNAL(clicked()),this,SLOT(inputFile()));
     connect(ui->closeButton,SIGNAL(clicked()),this,SLOT(closeConnection()));
+
 }
 
 
@@ -37,7 +38,7 @@ void MainWindow::connectServer()
                 this, SLOT(error()));
 
     client->connectToHost("localhost", 1024);
-    if(!client->waitForConnected(100)){
+    if(!client->waitForConnected(1000)){
         ui->log->appendPlainText("conection faild");
     }
 }
@@ -120,7 +121,7 @@ void MainWindow::updateMessage()
 
 void MainWindow::closeConnection()
 {
-    client->close();
+    if(client->state()==3)client->close();
     emit done();
 }
 

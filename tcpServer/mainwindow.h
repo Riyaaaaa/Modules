@@ -1,19 +1,17 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
-#include <QtGui>
 #include <QMainWindow>
 #include <QFile>
 #include <QDataStream>
 #include <QFileDialog>
-#include <QMessageBox>
 #include <QTcpServer>
+#include <QTcpSocket>
 #include <QAction>
 #include <QActionEvent>
 #include <QToolBar>
 #include <QMenuBar>
 #include <QMenu>
-#include "server.h"
 
 namespace Ui {
     class MainWindow;
@@ -37,7 +35,6 @@ protected slots:
     void read();
 
 private slots:
-    //void on_pushButton_clicked();
     void serverStart();
     void serverStop();
     void inputProblem();

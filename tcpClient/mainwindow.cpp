@@ -81,6 +81,7 @@ void MainWindow::inputFile()
                                                     tr("text files (*.txt);;All Files (*)"));
     if (fileName.isEmpty())return;
     else {
+        answer.clear();
         QFile file(fileName);
         QString str;
         if (!file.open(QIODevice::ReadOnly | QIODevice::Text))return;

@@ -17,22 +17,35 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->timeDial,SIGNAL(valueChanged(int)),this,SLOT(setTime(int)));
     connect(ui->setProb,SIGNAL(clicked()),this,SLOT(inputProblem()));
 
+    tcpServer=NULL;
 }
+
 
 void MainWindow::serverStart()
 {
     int port = 1024;
+    if(tcpServer==NULL){
     tcpServer = new QTcpServer(this);
     tcpServer->listen(QHostAddress::Any, port);
     connect(tcpServer, SIGNAL(newConnection()), this, SLOT(connection()));
     ui->SLOG->append("servet start...");
+    }
+    else {
+        ui->SLOG->append("server has been listening already");
+    }
 }
 
 void MainWindow::serverStop()
 {
-    ui->SLOG->append("servet stop");
-    tcpServer->close();
-    delete tcpServer;
+    if(tcpServer!=NULL){
+        ui->SLOG->append("servet stop");
+        tcpServer->close();
+        delete tcpServer;
+        tcpServer = NULL;
+    }
+    else {
+        ui->SLOG->append("server is not listening");
+    }
 }
 
 void MainWindow::createActions()

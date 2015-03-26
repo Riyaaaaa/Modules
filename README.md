@@ -4,10 +4,7 @@
 
 BBB_IO_INTERFACE_LIBRARY
 
-Beagle Bone Black向け
-
-GPIO, PWM, ADC向けライブラリ
-
+Beagle Bone Black向け GPIO, PWM, ADC向けライブラリ
 
 
 TcpServer/Client
